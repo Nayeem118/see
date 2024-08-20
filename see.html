@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motivational Quote Generator</title>
+    <style>
+        /* Reset default margins and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #0006ff, #fdace8);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-size: 200% 200%;
+            animation: gradientLoop 10s ease infinite;
+        }
+
+        /* Background gradient loop animation */
+        @keyframes gradientLoop {
+            0% {
+                background-position: 0% 80%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .container {
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px;
+    backdrop-filter: blur(10px); /* Blurring the backdrop */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Light border for contrast */
+    animation: fadeIn 2s ease forwards;
+}
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #quote {
+            font-size: 25px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+            font-family: 'Georgia', serif;
+        }
+
+        #guidelines {
+            font-size: 16px;
+            margin-bottom: 20px;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        #colorInput {
+            padding: 12px;
+            font-size: 18px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            margin-right: 10px;
+            width: 70%;
+            max-width: 300px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        #colorInput:focus {
+            border-color: #007bff;
+        }
+
+        #submitButton {
+            padding: 12px 24px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        #submitButton:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div id="guidelines">
+            <p>If you are feeling:</p>
+            <p><strong>Tension</strong> - Enter <span style="color:green;">green</span></p>
+            <p><strong>Stress</strong> - Enter <span style="color:blue;">blue</span></p>
+            <p><strong>Sadness</strong> - Enter <span style="color:yellow;">yellow</span></p>
+            <p><strong>Anger</strong> - Enter <span style="color:red;">red</span></p>
+            <p><strong>Confusion</strong> - Enter <span style="color:purple;">purple</span></p>
+            <p><strong>Anxiety</strong> - Enter <span style="color:pink;">pink</span></p>
+        </div>
+        <div id="quote">Enter a color and click "Show"</div>
+        <input type="text" id="colorInput" placeholder="Enter color">
+        <button id="submitButton" onclick="showQuote()">Show Quote</button>
+    </div>
+
+    <script>
+        const quotes = [
+            'Believe in yourself and all that you are.',
+            'You are never too old to set another goal or to dream a new dream.',
+            'The only way to do great work is to love what you do.',
+            'Success is not final, failure is not fatal: It is the courage to continue that counts.',
+            'The best way to predict the future is to create it.',
+            'Act as if what you do makes a difference. It does.',
+            'You do not find the happy life. You make it.',
+            'In the middle of every difficulty lies opportunity.',
+            'Life is what happens when you’re busy making other plans.',
+            'Keep your face always toward the sunshine—and shadows will fall behind you.'
+        ];
+
+        function getRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            return quotes[randomIndex];
+        }
+
+        function showQuote() {
+            const colorInput = document.getElementById('colorInput').value.trim().toLowerCase();
+            const quoteDiv = document.getElementById('quote');
+            const validColors = ['red', 'blue', 'green', 'yellow', 'purple', 'orange', 'pink', 'teal', 'brown', 'gray'];
+            const color = validColors.includes(colorInput) ? colorInput : 'gray';
+
+            quoteDiv.textContent = getRandomQuote();
+            quoteDiv.style.color = color;
+        }
+    </script>
+</body>
+
+</html>
